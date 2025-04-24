@@ -1,0 +1,24 @@
+[build-system]
+# You usually do not need to change this value. These dependencies are used to build your project,
+# which is farely easy for pure Python projects. If you have a more complex project, you might need
+# to change this value.
+requires = ["setuptools>=45", "wheel", "Cython"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project]
+# This is the name of the project for pip. Usually it is the same as the name of the package.
+name = "cakeulator"
+# You can specify the version of your project here. Increment the version number
+# when you make significant changes to your project.
+version = "1.0.0"
+# What is the minimum Python version required?
+requires-python = ">=3.8"
+# Add dependencies for your project here
+dependencies = [
+    "numpy>=2.2.1",
+    "matplotlib>=3.9.1",
+    "pandas>=2.2.3"
+]

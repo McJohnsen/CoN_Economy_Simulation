@@ -1,8 +1,8 @@
-def morale_to_construction(morale):
+def morale_influence(morale):
     """
     Takes morale and calculates the factor that construction, unit production and population growth is affected by.
     Goes from 0.65 to 1.
-    :param morale:
+    :param morale: morale percentage, between 0 and 1.
     :return: factor to construction speed.
     """
     factor = 0.004 * morale + 0.65
@@ -12,11 +12,25 @@ def morale_to_construction(morale):
     return factor
 
 
+def morale_influence_on_production(morale):
+    """
+
+    :param morale:
+    :return:
+    """
+    return morale * 0.8 / 100 + 0.25
+
+
 def add_graphs(graphs):
     pass
 
 
 def pop_modifier_on_production(population):
+    """
+    Enter population level, get modifier on resource production
+    :param population: Between 1 and 10
+    :return:
+    """
     if population >= 5:
         factor = population - 5
         factor *= 0.05
@@ -27,3 +41,7 @@ def pop_modifier_on_production(population):
         factor *= 0.2
         factor = 1 - factor
         return factor
+
+
+def morale_change(current_morale: float, target_morale: float):
+    return current_morale + (target_morale - current_morale) / 7

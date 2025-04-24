@@ -1,3 +1,7 @@
+"""
+OUTDATED
+"""
+
 import csv
 
 
@@ -37,7 +41,7 @@ def start_production(resource: str):
 def open_files():
 
     # Population
-    file_name = "./data/population_growth.csv"
+    file_name = "src/cakeulator/data/population_growth.csv"
     with open(file_name, newline='') as f:
         reader = csv.reader(f)
         data = next(reader)
@@ -45,6 +49,6 @@ def open_files():
             population_grow_duration.append(int(value))
 
     # building.csv
-    file_name = "./data/population_growth.csv"
+    file_name = "src/cakeulator/data/population_growth.csv"
     with open(file_name, newline='') as f:
         pass  # TODO: implement

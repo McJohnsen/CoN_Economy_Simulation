@@ -1,6 +1,9 @@
+"""
+OUTDATED
+"""
 import math
 
-import calculations
+from cakeulator.utilities import calculations
 import initiation
 
 
@@ -242,7 +245,7 @@ class City:
         # Create events, production modifier from morale
         for i in range(self.day_of_ownership, len(self.morale_daily_values)):
             self.morale_construction_mods.append(
-                [i - initiation.day_change, "morale", calculations.morale_to_construction(self.morale_daily_values[i])])
+                [i - initiation.day_change, "morale", calculations.morale_influence(self.morale_daily_values[i])])
             # Formula to convert morale to morale modifier on production
             modifier = ((self.morale_daily_values[i] / 100) * 0.8) + 0.25
             self.morale_daily_values_mods[i] = modifier
@@ -271,7 +274,7 @@ class City:
         current_time = self.ownership_time
         current_pop_level = self.start_population
         current_building_mod = self.population_growth_modifiers_start
-        current_morale_mod = calculations.morale_to_construction(self.morale_daily_values[self.day_of_ownership])
+        current_morale_mod = calculations.morale_influence(self.morale_daily_values[self.day_of_ownership])
         next_pop_level = get_next_pop_level(current_pop_level)
 
         # First we loop from growth_mod to growth_mod, in growth_mods we have listed all modifiers affecting population growth.
