@@ -13,7 +13,7 @@ where = ["src"]
 name = "cakeulator"
 # You can specify the version of your project here. Increment the version number
 # when you make significant changes to your project.
-version = "1.0.0"
+version = "1.0.1"
 # What is the minimum Python version required?
 requires-python = ">=3.8"
 # Add dependencies for your project here

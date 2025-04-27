@@ -45,10 +45,22 @@ class City:
         print(start_morale)
         print(morale_influence(start_morale))
         print(pop_modifier_on_production(start_population))
-        self.start_production = base_production * morale_influence_on_production(start_morale) * pop_modifier_on_production(start_population)
-        self.production_list = [(day_of_ownership, self.start_production)]  # TODO: include building modifier
         self.total_production = [(day_of_ownership, 0)]
         self.population_list = []
+
+        # TODO: Check starting buildings
+        self.start_prod_factor_from_buildings = 1
+        for building in start_buildings:
+            build_info = self.data_table.loc[building]
+            building_morale_bonus = build_info['effect on morale']
+            building_production_bonus = build_info['effect on production']
+            building_population_bonus = build_info['effect on population']
+            if building_morale_bonus > 0:
+                self.morale_targets += building_morale_bonus
+            if building_production_bonus > 0:
+                self.start_prod_factor_from_buildings += building_production_bonus
+        self.start_production = base_production * morale_influence_on_production(start_morale) * pop_modifier_on_production(start_population) * self.start_prod_factor_from_buildings
+        self.production_list = [(day_of_ownership, self.start_production)]
 
     def set_start_buildings(self, start_buildings: list):
         self.start_buildings = start_buildings
@@ -216,7 +228,7 @@ class City:
             self.production_modifier_list.append([self.calculate_till_day, 3, 0])
         old_time = self.day_of_ownership
         total_production = 0
-        building_modifier = 1  # TODO: modify this for starting buildings
+        building_modifier = self.start_prod_factor_from_buildings
         population_modifier = pop_modifier_on_production(self.start_population)
         morale_modifier = morale_influence_on_production(self.start_morale)
         base_production = self.base_production

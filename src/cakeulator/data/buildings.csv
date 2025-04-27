@@ -1,13 +1,14 @@
-abbreviation,name,level,construction_time,supplies cost,component cost,rares cost,fuel cost,electronic cost,money cost,HP,effect on production,effect on morale,effect on population,flat money bonus,manpower bonus production,flat manpower bonus,daily cash upkeep
-AI1, Arms Industry, 1, 9, 400, 350, 225, 350, 250, 1250, 10, 0.1, 0, 0, 100, 0, 0, 0
-AI2, Arms Industry, 2, 24, 450, 450, 275, 400, 300, 2000, 15, 0.1, 0, 0, 135, 0, 0, 0
-AI3, Arms Industry, 3, 30, 500, 500, 300, 425, 325, 3000, 20, 0.1, 0, 0, 165, 0, 0, 0
-AI4, Arms Industry, 4, 36, 525, 525, 325, 450, 350, 4000, 25, 0.1, 0, 0, 185, 0, 0, 0
-AI5, Arms Industry, 5, 48, 550, 550, 350, 475, 375, 5000, 30, 0.1, 0, 0, 200, 0, 0, 0
-UB1, Underground Bunker, 1, 9, 500, 750, 0, 750, 0, 2000, 20, 0, 5, 0, 0, 0, 0, 100
-UB2, Underground Bunker, 2, 12, 1000, 1000, 0, 1250, 0, 3500, 40, 0, 10, 0, 0, 0, 0, 110
-UB3, Underground Bunker, 3, 15, 1500, 1250, 0, 1500, 0, 5000, 75, 0, 20, 0, 0, 0, 0, 120
-UB4, Underground Bunker, 4, 17, 2000, 1500, 0, 1750, 0, 6500, 100, 0, 35, 0, 0, 0, 0, 130
-UB5, Underground Bunker, 5, 20, 2500, 1750, 0, 2000, 0, 8000, 125, 0, 50, 0, 0, 0, 0, 140
-AP1, Air Base, 1, 24, 750, 1000, 0, 1000, 500, 2750, 10, 0.05, 0, 0, 0, 0, 0, 0
-NB2, Naval Base, 2, 9, 500, 750, 0, 750, 500, 2000, 10, 0.05, 0, 0, 0, 0, 0, 0
+abbreviation,name,level,construction_time,supplies cost,component cost,manpower cost,rares cost,fuel cost,electronic cost,money cost,HP,effect on production,effect on morale,effect on population,flat money bonus,manpower bonus production,flat manpower bonus,daily cash upkeep,manpower cost,
+AI1, Arms Industry, 1, 9, 400, 350, 0, 225, 350, 250, 1250, 10, 0.1, 0, 0, 100, 0, 0, 0
+AI2, Arms Industry, 2, 24, 450, 450, 0, 275, 400, 300, 2000, 15, 0.1, 0, 0, 135, 0, 0, 0
+AI3, Arms Industry, 3, 30, 500, 500, 0, 300, 425, 325, 3000, 20, 0.1, 0, 0, 165, 0, 0, 0
+AI4, Arms Industry, 4, 36, 525, 525, 0, 325, 450, 350, 4000, 25, 0.1, 0, 0, 185, 0, 0, 0
+AI5, Arms Industry, 5, 48, 550, 550, 0, 350, 475, 375, 5000, 30, 0.1, 0, 0, 200, 0, 0, 0
+UB1, Underground Bunker, 1, 9, 500, 750, 0, 0, 750, 0, 2000, 20, 0, 5, 0, 0, 0, 0, 100
+UB2, Underground Bunker, 2, 12, 1000, 1000, 0, 0, 1250, 0, 3500, 40, 0, 5, 0, 0, 0, 0, 110
+UB3, Underground Bunker, 3, 15, 1500, 1250, 0, 0, 1500, 0, 5000, 75, 0, 10, 0, 0, 0, 0, 120
+UB4, Underground Bunker, 4, 17, 2000, 1500, 0, 0, 1750, 0, 6500, 100, 0, 15, 0, 0, 0, 0, 130
+UB5, Underground Bunker, 5, 20, 2500, 1750, 0, 0, 2000, 0, 8000, 125, 0, 15, 0, 0, 0, 0, 140
+AP1, Air Base, 1, 24, 750, 1000, 0, 0, 1000, 500, 2750, 10, 0.05, 0, 0, 0, 0, 0, 0
+NB2, Naval Base, 2, 9, 500, 750, 0, 0, 750, 500, 2000, 10, 0.05, 0, 0, 0, 0, 0, 0
+HQ, Headquarters, 1, 36, 0, 0, 2500, 0, 0, 0, 15000, 20, 0, 25, 0, 0, 0, 0, 0

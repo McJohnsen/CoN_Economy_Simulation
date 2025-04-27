@@ -44,4 +44,7 @@ def pop_modifier_on_production(population):
 
 
 def morale_change(current_morale: float, target_morale: float):
-    return current_morale + (target_morale - current_morale) / 7
+    new_morale = current_morale + (target_morale - current_morale) / 7
+    if new_morale > 100:
+        new_morale = 100
+    return new_morale
