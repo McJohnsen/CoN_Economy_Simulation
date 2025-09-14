@@ -1,3 +1,5 @@
+import math
+
 def morale_influence(morale):
     """
     Takes morale and calculates the factor that construction, unit production and population growth is affected by.
@@ -47,4 +49,4 @@ def morale_change(current_morale: float, target_morale: float):
     new_morale = current_morale + (target_morale - current_morale) / 7
     if new_morale > 100:
         new_morale = 100
-    return new_morale
+    return math.ceil(new_morale)

@@ -5,10 +5,11 @@ from cakeulator.utilities.calculations import *
 
 
 class City:
-    def __init__(self, start_buildings: list, ressource: str, base_production: float, data_table: pd.DataFrame, pop_data: list, start_morale=70.0, start_population=5.0, is_homeland=True, day_of_ownership=0, calculate_till_day=30):
+    def __init__(self, start_buildings: list, ressource: str, base_production: float, base_money: float, data_table: pd.DataFrame, pop_data: list, start_morale=70.0, start_population=5.0, is_homeland=True, day_of_ownership=0, calculate_till_day=30):
         self.start_buildings = start_buildings
         self.ressource = ressource
         self.base_production = base_production
+        self.base_money_production = base_money
         self.start_morale = start_morale
         self.start_population = start_population
         self.is_homeland = True
@@ -46,21 +47,31 @@ class City:
         print(morale_influence(start_morale))
         print(pop_modifier_on_production(start_population))
         self.total_production = [(day_of_ownership, 0)]
+        self.total_money = [(day_of_ownership, 0)]
         self.population_list = []
 
-        # TODO: Check starting buildings
         self.start_prod_factor_from_buildings = 1
+        self.flat_money_bonus_from_buildings = 0
         for building in start_buildings:
             build_info = self.data_table.loc[building]
             building_morale_bonus = build_info['effect on morale']
             building_production_bonus = build_info['effect on production']
             building_population_bonus = build_info['effect on population']
+
+            # Only take the highest amount from existing arms industries
+            flat_money_bonus_from_building = build_info['flat money bonus']
+            if flat_money_bonus_from_building > self.flat_money_bonus_from_buildings:
+                self.flat_money_bonus_from_buildings = flat_money_bonus_from_building
             if building_morale_bonus > 0:
                 self.morale_targets += building_morale_bonus
             if building_production_bonus > 0:
                 self.start_prod_factor_from_buildings += building_production_bonus
+            if building_population_bonus > 0:
+                self.population_modifier_list.append([self.day_of_ownership, 0, building_population_bonus])
         self.start_production = base_production * morale_influence_on_production(start_morale) * pop_modifier_on_production(start_population) * self.start_prod_factor_from_buildings
+        self.start_money_production = base_money * morale_influence_on_production(start_morale) * pop_modifier_on_production(start_population) * self.start_prod_factor_from_buildings + self.flat_money_bonus_from_buildings  # TODO: Consider Annexed/occupied
         self.production_list = [(day_of_ownership, self.start_production)]
+        self.money_production_list = [(day_of_ownership, self.start_money_production)]
 
     def set_start_buildings(self, start_buildings: list):
         self.start_buildings = start_buildings
@@ -231,7 +242,6 @@ class City:
         building_modifier = self.start_prod_factor_from_buildings
         population_modifier = pop_modifier_on_production(self.start_population)
         morale_modifier = morale_influence_on_production(self.start_morale)
-        base_production = self.base_production
         old_production = self.start_production
         for idx in range(len(self.production_modifier_list)):
             time = self.production_modifier_list[idx][0]  # calculate pop until next modifier
@@ -241,7 +251,8 @@ class City:
                 morale_modifier = self.production_modifier_list[idx][2]
             elif self.production_modifier_list[idx][1] == 2:
                 population_modifier = self.production_modifier_list[idx][2]
-            production = base_production * building_modifier * morale_modifier * population_modifier
+            production = self.base_production * building_modifier * morale_modifier * population_modifier
+            money_production = self.base_money_production * building_modifier * morale_modifier * population_modifier
             self.production_list.append((time, production))
             total_production += (time - old_time) * old_production
             self.total_production.append((time, total_production))
